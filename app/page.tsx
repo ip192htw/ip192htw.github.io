@@ -1,69 +1,130 @@
-import Image from "next/image";
+import Link from "next/link";
+import { PROFILE_DATA, PROJECTS_DATA } from "./lib/portfolio-data";
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+    <main className="flex-grow w-full max-w-[1280px] mx-auto px-4 md:px-8 py-12 flex flex-col gap-12">
+      {/* 1. Profile Section & Status */}
+      <section className="flex flex-col md:flex-row justify-between items-start md:items-center gap-8 border-b border-outline-variant pb-12">
+        <div className="flex flex-col gap-6 max-w-2xl">
+          <div>
+            <h1 className="font-display-lg text-display-lg text-on-surface mb-2 tracking-tight">
+              {PROFILE_DATA.name}
+            </h1>
+            <h2 className="font-headline-md text-headline-md text-on-surface-variant font-normal">
+              {PROFILE_DATA.title}
+            </h2>
+          </div>
+          <div className="flex items-center gap-2 text-on-surface-variant font-body-md text-body-md">
+            <span className="material-symbols-outlined text-[18px]">
+              location_on
+            </span>
+            <span>{PROFILE_DATA.location}</span>
+          </div>
+          <p className="font-body-lg text-body-lg text-on-surface">
+            {PROFILE_DATA.bio}
           </p>
+          <div className="inline-flex items-center gap-2 bg-surface-container-low border border-outline-variant px-3 py-1.5 rounded-full w-fit">
+            <span className="text-tertiary text-[10px]">●</span>
+            <span className="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">
+              {PROFILE_DATA.status}
+            </span>
+          </div>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+        <div className="shrink-0">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            className="w-[192px] h-[192px] object-cover rounded-lg border border-outline-variant grayscale hover:grayscale-0 transition-all duration-500"
+            alt={PROFILE_DATA.portraitAlt}
+            src={PROFILE_DATA.portraitSrc}
+          />
         </div>
-      </main>
-    </div>
+      </section>
+
+      {/* 2. About Section */}
+      <section className="border-b border-outline-variant pb-12">
+        <h3 className="font-label-lg text-label-lg text-on-surface-variant uppercase tracking-widest mb-6">
+          About
+        </h3>
+        <p className="font-body-lg text-body-lg text-on-surface max-w-[720px] text-justify leading-relaxed">
+          {PROFILE_DATA.about}
+        </p>
+      </section>
+
+      {/* 3. Selected Projects */}
+      <section>
+        <div className="flex justify-between items-end mb-8">
+          <h3 className="font-label-lg text-label-lg text-on-surface-variant uppercase tracking-widest">
+            Selected Projects
+          </h3>
+        </div>
+        <div className="flex flex-col">
+          {PROJECTS_DATA.map((project, index) => {
+            const isLast = index === PROJECTS_DATA.length - 1;
+            return (
+              <article
+                key={project.id}
+                className={`group border-t border-outline-variant ${
+                  isLast ? "border-b" : ""
+                } py-8 flex flex-col md:flex-row gap-8 hover:bg-surface-container-low/30 transition-colors`}
+              >
+                <div className="md:w-16 shrink-0 font-label-md text-label-md text-on-surface-variant pt-1">
+                  {project.number}
+                </div>
+                <div className="shrink-0 w-full md:w-[360px]">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    className="w-full h-auto aspect-video object-cover rounded border border-outline-variant group-hover:border-primary/50 transition-colors"
+                    alt={project.imageAlt}
+                    src={project.imageSrc}
+                  />
+                </div>
+                <div className="flex flex-col gap-4 flex-grow justify-between">
+                  <div>
+                    <div className="flex items-baseline gap-4 mb-2">
+                      <h4 className="font-headline-md text-headline-md text-on-surface">
+                        {project.title}
+                      </h4>
+                      <span className="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">
+                        {project.category}
+                      </span>
+                    </div>
+                    <p className="font-body-md text-body-md text-on-surface-variant max-w-xl">
+                      {project.description}
+                    </p>
+                  </div>
+                  <div className="flex flex-wrap items-center justify-between gap-4">
+                    <div className="flex flex-wrap gap-2">
+                      {project.tags.map((tag) => (
+                        <span
+                          key={tag}
+                          className="bg-surface-container-highest px-2 py-1 rounded font-label-md text-label-md text-on-surface"
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                    <div className="flex items-center gap-6">
+                      <div className="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">
+                        {project.role}
+                      </div>
+                      <Link
+                        className="inline-flex items-center gap-1 font-label-lg text-label-lg text-primary hover:text-primary-fixed transition-colors"
+                        href={project.link}
+                      >
+                        View Project{" "}
+                        <span className="material-symbols-outlined text-[16px]">
+                          arrow_forward
+                        </span>
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+              </article>
+            );
+          })}
+        </div>
+      </section>
+    </main>
   );
 }
