@@ -1,5 +1,7 @@
 import Link from "next/link";
 import { CUESYNC_CASE_STUDY } from "../../lib/portfolio-data";
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 
 export default function CueSyncPage() {
   const caseStudy = CUESYNC_CASE_STUDY;
@@ -34,22 +36,6 @@ export default function CueSyncPage() {
       <section className="grid grid-cols-2 md:grid-cols-4 gap-y-6 gap-x-4 border-t border-b border-outline-variant py-6">
         <div className="flex flex-col gap-1">
           <span className="font-label-md text-label-md text-on-surface-variant uppercase tracking-widest">
-            Role
-          </span>
-          <span className="font-body-md text-body-md text-on-surface">
-            {caseStudy.role}
-          </span>
-        </div>
-        <div className="flex flex-col gap-1">
-          <span className="font-label-md text-label-md text-on-surface-variant uppercase tracking-widest">
-            Type
-          </span>
-          <span className="font-body-md text-body-md text-on-surface">
-            {caseStudy.type}
-          </span>
-        </div>
-        <div className="flex flex-col gap-1">
-          <span className="font-label-md text-label-md text-on-surface-variant uppercase tracking-widest">
             Stack
           </span>
           <div className="flex flex-wrap gap-2 mt-1">
@@ -80,94 +66,47 @@ export default function CueSyncPage() {
         <img
           alt={caseStudy.heroImageAlt}
           className="w-full h-full object-cover"
-          src={caseStudy.heroImageSrc}
+          src={caseStudy.heroImage}
         />
       </figure>
 
       {/* Case Study Sections */}
       <article className="flex flex-col gap-10 max-w-[720px]">
-        {/* Overview */}
-        <section className="flex flex-col gap-3">
-          <h2 className="font-headline-md text-headline-md text-on-surface border-b border-outline-variant pb-2">
-            Overview
-          </h2>
-          <p className="font-body-md text-body-md text-on-surface-variant leading-relaxed">
-            {caseStudy.overview}
-          </p>
-        </section>
+        <div className="prose dark:prose-invert max-w-none p-5">
+          <ReactMarkdown
 
-        {/* Technical Decisions */}
-        <section className="flex flex-col gap-3">
-          <h2 className="font-headline-md text-headline-md text-on-surface border-b border-outline-variant pb-2">
-            Technical Decisions
-          </h2>
-          <p className="font-body-md text-body-md text-on-surface-variant leading-relaxed">
-            {caseStudy.technicalDecisions}
-          </p>
-        </section>
-
-        {/* Implementation */}
-        <section className="flex flex-col gap-3">
-          <h2 className="font-headline-md text-headline-md text-on-surface border-b border-outline-variant pb-2">
-            Implementation
-          </h2>
-          <p className="font-body-md text-body-md text-on-surface-variant leading-relaxed mb-2">
-            The core challenge was ensuring immediate updates across devices
-            during active events (e.g., room changes, delays).
-          </p>
-
-          {/* Technical Log Snippet */}
-          <div className="bg-surface-container-low border border-outline-variant rounded-lg p-4 font-mono text-xs overflow-x-auto space-y-1">
-            {caseStudy.logs.map((log, i) => (
-              <div key={i} className="flex gap-4">
-                <span className="text-tertiary select-none">{log.time}</span>
-                <span
-                  className={
-                    log.highlight
-                      ? "text-primary font-semibold"
-                      : "text-on-surface-variant"
-                  }
-                >
-                  {log.text}
-                </span>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* Outcome */}
-        <section className="flex flex-col gap-3">
-          <h2 className="font-headline-md text-headline-md text-on-surface border-b border-outline-variant pb-2">
-            Outcome
-          </h2>
-          <p className="font-body-md text-body-md text-on-surface-variant leading-relaxed">
-            {caseStudy.outcome}
-          </p>
-        </section>
+          remarkPlugins={[remarkGfm]}>
+            {caseStudy.content}
+          </ReactMarkdown>
+        </div>
       </article>
 
       {/* Project Links */}
       <section className="flex flex-col sm:flex-row gap-4 pt-6 border-t border-outline-variant">
-        <a
-          className="inline-flex items-center justify-center gap-2 px-4 py-2 bg-primary-container text-on-primary rounded-lg font-label-md text-label-md uppercase tracking-widest hover:opacity-90 transition-opacity"
-          href={caseStudy.demoUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Live Demo
-          <span className="material-symbols-outlined text-[16px]">
-            open_in_new
-          </span>
-        </a>
-        <a
-          className="inline-flex items-center justify-center gap-2 px-4 py-2 bg-transparent border border-outline-variant text-on-surface rounded-lg font-label-md text-label-md uppercase tracking-widest hover:bg-surface-container-high transition-colors"
-          href={caseStudy.githubUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          GitHub Repository
-          <span className="material-symbols-outlined text-[16px]">code</span>
-        </a>
+        {caseStudy.links?.demo && 
+          <a
+            className="inline-flex items-center justify-center gap-2 px-4 py-2 bg-primary-container text-on-primary rounded-lg font-label-md text-label-md uppercase tracking-widest hover:opacity-90 transition-opacity"
+            href={caseStudy.links?.demo}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Live Demo
+            <span className="material-symbols-outlined text-[16px]">
+              open_in_new
+            </span>
+          </a>
+        }
+        {caseStudy.links?.github && 
+          <a
+            className="inline-flex items-center justify-center gap-2 px-4 py-2 bg-transparent border border-outline-variant text-on-surface rounded-lg font-label-md text-label-md uppercase tracking-widest hover:bg-surface-container-high transition-colors"
+            href={caseStudy.links?.github}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            GitHub Repository
+            <span className="material-symbols-outlined text-[16px]">code</span>
+          </a>
+        }
       </section>
     </main>
   );

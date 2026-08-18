@@ -1,5 +1,8 @@
 import Link from "next/link";
 import { PROFILE_DATA, PROJECTS_DATA } from "./lib/portfolio-data";
+import { FaLinkedin } from 'react-icons/fa';
+import { SiGithub } from 'react-icons/si';
+import { HiOutlineMail } from 'react-icons/hi';
 
 export default function Home() {
   return (
@@ -30,6 +33,30 @@ export default function Home() {
               {PROFILE_DATA.status}
             </span>
           </div>
+          <div className="flex items-center gap-5 text-3xl text-slate-300">
+            <a 
+              href={`mailto:${PROFILE_DATA.contact.email}`}
+              target="_blank" 
+              rel="noopener noreferrer"
+            >
+              <HiOutlineMail />
+            </a>
+            
+            <a 
+              href={PROFILE_DATA.contact.github} 
+              target="_blank" 
+              rel="noopener noreferrer"
+            >
+              <SiGithub />
+            </a>
+            <a 
+              href="https://www.linkedin.com/in/ryan-po-hsuan-chang-055a0a253/" 
+              target="_blank" 
+              rel="noopener noreferrer"
+            >
+              <FaLinkedin />
+            </a>
+          </div>
         </div>
         <div className="shrink-0">
           {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -39,7 +66,10 @@ export default function Home() {
             src={PROFILE_DATA.portraitSrc}
           />
         </div>
+        
       </section>
+
+
 
       {/* 2. About Section */}
       <section className="border-b border-outline-variant pb-12">
