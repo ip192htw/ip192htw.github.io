@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 import { notFound } from "next/navigation";
-import { CUESYNC_CASE_STUDY, Shop_PROJECT } from "../../lib";
+import { CUESYNC_CASE_STUDY, SHOP_PROJECT } from "../../lib";
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import { ProjectMeta } from "@/app/lib/type";
@@ -27,8 +27,6 @@ export default async function CueSyncPage({ params }: PageProps) {
 
   const { slug } = await params;
 
-
-
   let caseStudy: ProjectMeta;
   
   switch (slug) {
@@ -37,7 +35,7 @@ export default async function CueSyncPage({ params }: PageProps) {
       caseStudy = CUESYNC_CASE_STUDY;
       break;
     case "shop":
-      caseStudy = Shop_PROJECT;
+      caseStudy = SHOP_PROJECT;
       break;
     default:
       notFound();
@@ -98,7 +96,7 @@ export default async function CueSyncPage({ params }: PageProps) {
       </section>
 
       {/* Hero Image */}
-      <figure className="w-full aspect-video rounded-xl overflow-x-scroll bg-surface-container-low border border-outline-variant">
+      <figure className="w-full aspect-video rounded-xl overflow-x-scroll scrollbar-width:none [&::-webkit-scrollbar]:hidden bg-surface-container-low border border-outline-variant">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         {caseStudy.heroImages.map((heroImage) => (
           <img

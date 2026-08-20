@@ -7,8 +7,8 @@ export const SHOP_PROJECT: ProjectMeta = {
 
   title: "Shop",
   subtitle: "E-commerce Platform",
-    stack: ["Next.js", "Supabase", "Google Cloud", "Vercel"],
-  status: "Unavailable",
+    stack: ["Next.js", "Supabase", "Google Cloud", "Vercel", "PostgreSQL"],
+  status: "Archived",
   heroImages: [
     {
       src: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=1200&q=80",
@@ -18,13 +18,13 @@ export const SHOP_PROJECT: ProjectMeta = {
   content: `
 ## 專案資料
 
-專案名稱：Cuesync
+專案代號：shop
 
-定位：一個給非專業人士使用的活動排程系統
+定位：一個輕量化的商城系統
 
 類型：學習專案
 
-狀態：原始程式不可考(unavailable)，已停止維護
+狀態：已停止維護，進入公開封存
 
 架構：React + Firebase
 
@@ -32,111 +32,158 @@ export const SHOP_PROJECT: ProjectMeta = {
 
 # Overview
 
-CueSync 起源於我參與校園活動時對現場資訊流動的觀察。當時的活動流程往往依賴 Word 或試算表手動維護節目表，不只調整順序時容易牽一髮動全身，節目表、催場、場地異動與工作人員資訊也經常分散在不同工具中。
+Shop 最初是以一個相對直接的電商需求開始：
 
-我因此嘗試做一個給非專業人士使用的活動排程系統。CueSync 刻意捨棄專業活動製作工具中學生或一般活動主辦者用不到的複雜功能，只保留節目編輯、排序與匯出等核心能力，並進一步嘗試讓主辦端、工作人員與現場顯示設備共享即時資訊。
+建立一個可以讓使用者瀏覽商品、加入購物車並完成訂單流程的校園型電商系統。
 
-這也是我第一次嘗試把一個想法從產品概念一路做到可以部署的 Web Product。過程中，我第一次實際接觸 Firebase、GCP、Next.js 與 Vercel，也開始理解現代 Web Product 不只是把畫面做出來，而是需要同時處理資料、部署與使用情境。
+但實際開發後，我逐漸意識到，商城並不是由幾張商品與訂單資料表組成的簡單系統，而是許多彼此存在依賴關係的 domain 所共同構成：
 
-## 我做了什麼
+- 商品
 
-CueSync 的核心功能圍繞「節目表」建立。
+- SKU
 
-### 節目流程管理
+- 庫存
 
-- 拖曳調整節目順序
-- 設定節目間隔與緩衝時間
-- 連結表演者資料
-- 匯出活動流程表
+- 購物車
 
-### 表演者管理
+- 訂單
 
-以表演者或團體為單位管理活動資料，可以查看：
+- 使用者
 
-- 參與的節目
-- 聯絡資訊
-- 活動相關資料
+- Authentication
 
-### 實驗性功能
+- Authorization
 
-在核心功能之外，我也嘗試過一些當時認為可能有價值的功能：
+- RLS
 
-- 多語言介面（i18n）
-- 電視牆即時顯示
-- 多人即時編輯
+- 後台管理
+
+- 批次出貨
+
+- 不同商品狀態
+
+- 資料模型
 
 
-## 我的角色
+## What I Built
 
-這是一個個人專案，因此從產品構想到實作、部署與後續迭代皆由我負責，但當時的我還沒有建立完整的工程規範。
+### 已完成
 
-我主要參與：
+- 商品瀏覽
 
-- 產品需求與功能設計
-- 前端介面與互動
-- Firebase 資料與身份系統
-- Web Application 開發
-- 部署與服務設定
-- 實驗性功能開發
+- 商品詳細資訊
 
----
+- 商品管理
 
-## 技術選擇
+- SKU / 商品規格選擇
 
-當時選擇 Firebase 作為後端，主要是因為我希望把更多時間放在產品本身，而不是先建立完整的後端基礎設施。
+- 購物車
 
-Firebase 提供了 Authentication、資料儲存與即時同步等能力，對當時的我來說，可以用相對低的開發成本快速驗證產品想法。
+- 訂單建立
 
-資料層則採用 Firestore 的 NoSQL 模型。以當時 CueSync 的資料規模與需求來看，這樣的選擇足以支撐早期實驗。
+- SKU
 
-這個選擇也讓我第一次實際理解 BaaS 與傳統自行建立 Backend 的差異。
+- Inventory
 
----
+- User authentication
 
-## 問題與限制
+- 使用者檔案
 
-這個專案最大的問題其實不是技術選型，而是工程結構。
+- RLS
 
-當時我對 React 的專案架構還沒有足夠經驗，同時大量依賴 AI 工具產生程式碼，卻沒有建立明確的檔案結構、責任邊界與開發規範。
 
-隨著功能不斷增加，程式碼逐漸變成一個難以維護的「組合怪」：功能可以運作，但我開始無法清楚回答某段邏輯應該放在哪裡、哪些程式可以重複利用，以及修改一個功能會影響到哪些地方。
+### 已規劃
 
-這也是我第一次真正感受到：
+- 庫存管理
 
-> 「能跑」和「能維護」是兩件完全不同的事情。
+- 訂單 / 出貨流程的基礎架構
 
----
+- IAM
 
-## 我學到什麼
 
-### 技術
+# From Prototype to System
 
-第一次完整接觸現代 Web Product 的開發流程，從 React 前端、Firebase Backend，到 GCP 與 Vercel 部署。
+開發初期，我習慣以功能為單位直接組合元件、資料存取與商業邏輯。這種方式在需求還很小的時候非常有效，但隨著商品、SKU、庫存與使用者權限逐漸增加，原本的結構開始出現大量重複與隱性耦合。這時候，問題已經不再是「下一個功能怎麼做」，而是「這個系統要怎麼繼續存在」。我需要一個完整有結構規劃的架構，而不是一道臨時砌起來的牆。
 
-### 架構
+## Architecture Refactoring
 
-Firebase 讓我第一次理解 BaaS 的開發模式，也讓我看到「快速建立產品」與「長期維護系統」其實是兩個不同的問題。
+### Domain-Driven Design
 
-### 工程
+DDD 並不是一開始就採用的架構，而是在系統規模增加後，為了解決 domain logic 分散與責任不清而逐步引入。對我而言，DDD 在這個專案裡並不是一套需要完整照搬的架構，而是一種重新思考「這段邏輯到底屬於誰」的方法。
 
-更重要的是，我第一次真正遇到程式碼規模超過自己管理能力的情況。這成為後來我開始重視架構、模組化與程式碼責任邊界的重要原因。
+#### Type System & Reusability: Building for Reuse
 
----
+最初的實作有大量針對單一情境撰寫的 code。隨著不同 domain 出現類似需求，我開始把相似部分開始抽象化，減少重複。我開始將 Repository、Service、資料存取模式與 Generic Types 等重複結構抽象化，讓不同 domain 可以共享相同的處理方式。
+重構的目的並不是單純減少程式碼，而是讓相同的 domain operation 能夠被一致地處理。
 
-## 回頭看
+#### Authentication & Authorization**
 
-如果現在重新做一次，我不會先追求把功能全部做出來，而會先建立清楚的專案結構與開發邊界。
+Authentication 主要由 Supabase Auth 負責，應用程式則將 auth.users 作為 canonical identity，再由 application layer 管理 profile 與其他 domain information。隨著 server-side rendering 與資料存取需求增加，我也開始區分 server 與 browser client，並使用 @supabase/ssr 處理不同 runtime 下的 authentication context。
 
-當時的 CueSync 確實留下了一個不容易維護的程式碼庫，但它也讓我第一次親身體會到：架構不是為了讓程式看起來漂亮，而是在專案開始變大之後，讓自己仍然有能力理解與修改它。
+**What I Overbuilt**
 
-## 結果
+一開始我為系統設計了較完整的 Role / Permission 架構，但隨著實際需求逐漸明確，我發現這套授權模型在目前產品階段並沒有實際需求。因此後續重新檢視架構時，我開始把「未來可能需要」與「現在真的需要」分開。這也讓我第一次意識到，工程上的複雜度本身也是一種成本。
 
-CueSync 最終沒有進入正式使用，專案也因時間與後續方向調整而停止維護，目前原始程式已不可考。
+## Data Modeling
 
-但它對我後續的開發影響反而比一個成功上線的專案更大。
+我原本以為商品就是 Product，後來才發現實際 commerce system 裡，Product、Variant、SKU 與 Inventory 是不同概念。
 
-它是我第一次把一個產品想法完整帶到可部署狀態，也讓我第一次實際碰到架構失控、BaaS、Cloud Deployment 與 AI 輔助開發所帶來的工程問題。
+Product
+│
+├── SKU
+│ ├── Variant
+│ └── Price
+│
+└── Inventory
+    ├── Available
+    ├── Reserved
+    └── Incoming
 
-後來在 Shop 等專案中，我開始重新處理這些問題，而 CueSync 可以算是這段學習的起點。
+
+
+這個結構並不是一開始就存在，而是在實際處理商品規格與庫存狀態後逐漸形成。尤其 SKU 與 Inventory 的拆分，讓我第一次真正理解到，一個「商品」在商業系統裡可能同時存在多種規格、價格與庫存狀態。
+
+## Security & Data Access
+
+當商品、庫存與使用者資料開始具有不同的存取需求後，我第一次真正需要思考「誰可以看到什麼資料」。最初我曾經設計較完整的 Role / Permission 模型，但重新檢視 MVP 的實際需求後，發現這會帶來超出產品需求的複雜度。因此後續更傾向讓資料庫層的 RLS 處理實際需要的資料隔離，而不是提前建立完整的 IAM 系統。
+
+# Problems & Constraints
+
+## Prototype inheritance
+
+最大的問題其實不是技術選型，而是早期開發留下的結構。早期的做法對快速驗證想法非常有效，但這些決策在系統規模增加後開始產生反作用。一開始為了快速驗證需求，大量程式碼直接以功能為中心組合。當系統變大後：之間開始出現大量隱性耦合。因此後續大量時間並不是在新增功能，而是在：**整理以前為了快速前進而留下的技術債。**
+
+**10. What I Learned**
+
+**Engineering**
+
+我開始理解大型程式碼庫中的 abstraction、
+
+domain boundaries、generic types 與 reusable architecture。
+
+**System Design**
+
+我開始理解 authentication、authorization、RLS、inventory、SKU 等系統之間其實存在複雜的相依關係。
+
+**Product**
+
+> 我開始理解「把功能做出來」和「設計一個能持續演進的產品」是兩件不同的事情
+
+**What I Would Do Differently**
+
+如果重新開始，我不會一開始就建立完整的 authorization、permission 或 automation 架構。
+
+我會先從 Product → SKU → Inventory → Cart → Order 這條真正的使用者流程開始，再根據實際出現
+
+的問題增加抽象層。
+
+這個專案讓我開始意識到，好的架構不只是預測未來，而是讓系統能夠在需求改變時低成本地改變。
+
+**Outcome**
+
+Shop 最終沒有以最初規劃的完整電商產品形式完成，而是在重新檢視產品定位後轉為公開封存。雖然未能真正被使用，但它也是目前對我工程能力影響最大的專案之一。
+
+在這個過程中，我第一次真正面對一個「已經不能靠快速拼湊繼續維持」的 codebase，並開始透過 domain modeling、type system、data modeling 與 access control 重新整理系統。
+
     `
 };
