@@ -16,7 +16,7 @@ export default function Header() {
 
   return (
     <header className="sticky top-0 w-full z-50 bg-surface/80 backdrop-blur-md border-b border-outline-variant transition-all duration-200">
-      <div className="max-w-[1280px] mx-auto px-4 md:px-8 flex justify-between items-center h-14">
+      <div className="max-w-7xl mx-auto px-4 md:px-8 flex justify-between items-center h-14">
         {/* Brand Logo & Name */}
         <Link
           href="/"

@@ -4,11 +4,11 @@ import {
   RESUME_PROJECTS_DATA,
   SKILLS_DATA,
   EDUCATION_DATA,
-} from "../lib/portfolio-data";
+} from "../lib";
 
 export default function ResumePage() {
   return (
-    <main className="max-w-[1280px] mx-auto px-4 md:px-8 pt-8 md:pt-12 pb-16 flex flex-col gap-8 md:gap-12 w-full">
+    <main className="max-w-7xl mx-auto px-4 md:px-8 pt-8 md:pt-12 pb-16 flex flex-col gap-8 md:gap-12 w-full">
       {/* Header Section */}
       <section className="flex flex-col gap-4">
         <div>
@@ -58,7 +58,7 @@ export default function ResumePage() {
               key={i}
               className="py-6 border-b border-outline-variant flex flex-col md:flex-row gap-2 md:gap-8 hover:bg-surface-container-low transition-colors px-2 -mx-2 rounded"
             >
-              <div className="md:w-32 flex-shrink-0 font-label-md text-label-md text-on-surface-variant mt-1">
+              <div className="md:w-32 shrink-0 font-label-md text-label-md text-on-surface-variant mt-1">
                 {exp.period}
               </div>
               <div className="flex flex-col gap-2">
@@ -100,7 +100,7 @@ export default function ResumePage() {
               key={i}
               className="py-4 border-b border-outline-variant flex flex-col md:flex-row gap-2 md:gap-8 hover:bg-surface-container-low transition-colors px-2 -mx-2 rounded"
             >
-              <div className="md:w-32 flex-shrink-0 font-label-md text-label-md text-on-surface-variant mt-1">
+              <div className="md:w-32 shrink-0 font-label-md text-label-md text-on-surface-variant mt-1">
                 {proj.period}
               </div>
               <div>
@@ -161,7 +161,7 @@ export default function ResumePage() {
         <div className="border-t border-outline-variant pt-6">
           {EDUCATION_DATA.map((edu, i) => (
             <div key={i} className="flex flex-col md:flex-row gap-2 md:gap-8">
-              <div className="md:w-32 flex-shrink-0 font-label-md text-label-md text-on-surface-variant mt-1">
+              <div className="md:w-32 shrink-0 font-label-md text-label-md text-on-surface-variant mt-1">
                 {edu.period}
               </div>
               <div>

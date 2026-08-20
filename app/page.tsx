@@ -1,12 +1,12 @@
 import Link from "next/link";
-import { PROFILE_DATA, PROJECTS_DATA } from "./lib/portfolio-data";
+import { PROFILE_DATA, PROJECTS_DATA } from "./lib";
 import { FaLinkedin } from 'react-icons/fa';
 import { SiGithub } from 'react-icons/si';
 import { HiOutlineMail } from 'react-icons/hi';
 
 export default function Home() {
   return (
-    <main className="flex-grow w-full max-w-[1280px] mx-auto px-4 md:px-8 py-12 flex flex-col gap-12">
+    <main className="grow w-full max-w-7xl mx-auto px-4 md:px-8 py-12 flex flex-col gap-12">
       {/* 1. Profile Section & Status */}
       <section className="flex flex-col md:flex-row justify-between items-start md:items-center gap-8 border-b border-outline-variant pb-12">
         <div className="flex flex-col gap-6 max-w-2xl">
@@ -61,7 +61,7 @@ export default function Home() {
         <div className="shrink-0">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            className="w-[192px] h-[192px] object-cover rounded-lg border border-outline-variant grayscale hover:grayscale-0 transition-all duration-500"
+            className="w-48 h-48 object-cover rounded-lg border border-outline-variant grayscale hover:grayscale-0 transition-all duration-500"
             alt={PROFILE_DATA.portraitAlt}
             src={PROFILE_DATA.portraitSrc}
           />
@@ -76,7 +76,7 @@ export default function Home() {
         <h3 className="font-label-lg text-label-lg text-on-surface-variant uppercase tracking-widest mb-6">
           About
         </h3>
-        <p className="font-body-lg text-body-lg text-on-surface max-w-[720px] text-justify leading-relaxed">
+        <p className="font-body-lg text-body-lg text-on-surface max-w-180 text-justify leading-relaxed">
           {PROFILE_DATA.about}
         </p>
       </section>
@@ -101,7 +101,7 @@ export default function Home() {
                 <div className="md:w-16 shrink-0 font-label-md text-label-md text-on-surface-variant pt-1">
                   {project.number}
                 </div>
-                <div className="shrink-0 w-full md:w-[360px]">
+                <div className="shrink-0 w-full md:w-90">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     className="w-full h-auto aspect-video object-cover rounded border border-outline-variant group-hover:border-primary/50 transition-colors"
@@ -109,7 +109,7 @@ export default function Home() {
                     src={project.imageSrc}
                   />
                 </div>
-                <div className="flex flex-col gap-4 flex-grow justify-between">
+                <div className="flex flex-col gap-4 grow justify-between">
                   <div>
                     <div className="flex items-baseline gap-4 mb-2">
                       <h4 className="font-headline-md text-headline-md text-on-surface">

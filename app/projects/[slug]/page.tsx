@@ -1,13 +1,50 @@
 import Link from "next/link";
-import { CUESYNC_CASE_STUDY } from "../../lib/portfolio-data";
+
+import { notFound } from "next/navigation";
+import { CUESYNC_CASE_STUDY, Shop_PROJECT } from "../../lib";
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
+import { ProjectMeta } from "@/app/lib/type";
 
-export default function CueSyncPage() {
-  const caseStudy = CUESYNC_CASE_STUDY;
+export async function generateStaticParams() {
+  const projects = ['cuesync', 'shop']; // 可從資料庫或 JSON 陣列讀取
+
+  return projects.map((slug) => ({
+    slug: slug,
+  }));
+}
+ 
+
+interface PageProps {
+  params: Promise<{
+    slug: string;
+  }>;
+}
+
+
+
+export default async function CueSyncPage({ params }: PageProps) {
+
+  const { slug } = await params;
+
+
+
+  let caseStudy: ProjectMeta;
+  
+  switch (slug) {
+
+    case "cuesync":
+      caseStudy = CUESYNC_CASE_STUDY;
+      break;
+    case "shop":
+      caseStudy = Shop_PROJECT;
+      break;
+    default:
+      notFound();
+  }
 
   return (
-    <main className="w-full max-w-[1280px] mx-auto px-4 md:px-8 pt-8 pb-16 flex flex-col gap-12">
+    <main className="w-full max-w-7xl mx-auto px-4 md:px-8 pt-8 pb-16 flex flex-col gap-12">
       {/* Page Header & Breadcrumb */}
       <header className="flex flex-col gap-4">
         <div className="flex items-center gap-2">
@@ -27,7 +64,7 @@ export default function CueSyncPage() {
         <h1 className="font-headline-lg-mobile md:font-display-lg text-headline-lg-mobile md:text-display-lg text-on-surface">
           {caseStudy.title}
         </h1>
-        <p className="font-body-md text-body-md text-on-surface-variant max-w-[720px]">
+        <p className="font-body-md text-body-md text-on-surface-variant max-w-180">
           {caseStudy.subtitle}
         </p>
       </header>
@@ -61,17 +98,20 @@ export default function CueSyncPage() {
       </section>
 
       {/* Hero Image */}
-      <figure className="w-full aspect-video rounded-xl overflow-hidden bg-surface-container-low border border-outline-variant">
+      <figure className="w-full aspect-video rounded-xl overflow-x-scroll bg-surface-container-low border border-outline-variant">
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          alt={caseStudy.heroImageAlt}
-          className="w-full h-full object-cover"
-          src={caseStudy.heroImage}
-        />
+        {caseStudy.heroImages.map((heroImage) => (
+          <img
+            key={heroImage.src}
+            alt={heroImage.alt}
+            className="w-full h-full object-cover"
+            src={heroImage.src}
+          />
+        ))}
       </figure>
 
       {/* Case Study Sections */}
-      <article className="flex flex-col gap-10 max-w-[720px]">
+      <article className="flex flex-col gap-10 max-w-180">
         <div className="prose dark:prose-invert max-w-none p-5">
           <ReactMarkdown
 

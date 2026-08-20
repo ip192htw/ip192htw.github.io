@@ -1,5 +1,5 @@
 
-import { PROFILE_DATA } from "../lib/portfolio-data";
+import { PROFILE_DATA } from "../lib";
 
 
 export default function Footer() {
