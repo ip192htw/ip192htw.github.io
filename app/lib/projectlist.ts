@@ -4,7 +4,7 @@ import { CUESYNC_CASE_STUDY, SHOP_PROJECT } from "./projects";
 
 export const PROJECTS_DATA: Project[] = [
   {
-    id: "cuesync",
+    id: CUESYNC_CASE_STUDY.id,
     number: "01",
     title: CUESYNC_CASE_STUDY.title,
     category: "Study Project",
@@ -12,7 +12,7 @@ export const PROJECTS_DATA: Project[] = [
       "A high-throughput distributed tracing and observability platform designed for microservices architectures.",
     tags: CUESYNC_CASE_STUDY.stack,
     role: "Lead Engineer",
-    link: "#",
+    link: CUESYNC_CASE_STUDY.id,
     image: CUESYNC_CASE_STUDY.heroImages[0]
   },
   {
@@ -32,7 +32,7 @@ export const PROJECTS_DATA: Project[] = [
     }
   },
   {
-    id: "shop",
+    id: SHOP_PROJECT.id,
     number: "03",
     title: SHOP_PROJECT.title,
     category: "Product Engineering",
@@ -40,7 +40,7 @@ export const PROJECTS_DATA: Project[] = [
       "Campus Event Management Platform streamlining scheduling, ticketing, and real-time venue synchronization.",
     tags: SHOP_PROJECT.stack,
     role: "Product Engineer",
-    link: "/projects/shop",
+    link: SHOP_PROJECT.id,
     image: SHOP_PROJECT.heroImages[0]
   }
 ];

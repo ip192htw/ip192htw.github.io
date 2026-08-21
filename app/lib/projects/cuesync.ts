@@ -3,8 +3,6 @@ import { ProjectMeta } from "../type";
 export const CUESYNC_CASE_STUDY: ProjectMeta = {
   id: "cuesync",
 
-  number: "0",
-
   title: "CueSync",
   subtitle: "Campus Event Management Platform",
   stack: ["React", "Firebase", "Vercel"],

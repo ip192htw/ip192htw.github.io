@@ -49,13 +49,13 @@ export default function Home() {
             >
               <SiGithub />
             </a>
-            <a 
+            {/* <a 
               href="https://www.linkedin.com/in/ryan-po-hsuan-chang-055a0a253/" 
               target="_blank" 
               rel="noopener noreferrer"
             >
               <FaLinkedin />
-            </a>
+            </a> */}
           </div>
         </div>
         <div className="shrink-0">
@@ -105,8 +105,8 @@ export default function Home() {
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     className="w-full h-auto aspect-video object-cover rounded border border-outline-variant group-hover:border-primary/50 transition-colors"
-                    alt={project.imageAlt}
-                    src={project.imageSrc}
+                    alt={project.image.alt}
+                    src={project.image.src}
                   />
                 </div>
                 <div className="flex flex-col gap-4 grow justify-between">
@@ -135,12 +135,9 @@ export default function Home() {
                       ))}
                     </div>
                     <div className="flex items-center gap-6">
-                      <div className="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">
-                        {project.role}
-                      </div>
                       <Link
                         className="inline-flex items-center gap-1 font-label-lg text-label-lg text-primary hover:text-primary-fixed transition-colors"
-                        href={project.link}
+                        href={`/projects/${project.link}`}
                       >
                         View Project{" "}
                         <span className="material-symbols-outlined text-[16px]">

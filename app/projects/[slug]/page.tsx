@@ -110,7 +110,7 @@ export default async function CueSyncPage({ params }: PageProps) {
 
       {/* Case Study Sections */}
       <article className="flex flex-col gap-10 max-w-180">
-        <div className="prose dark:prose-invert max-w-none p-5">
+        <div className="prose dark:prose-invert prose-li:my-0 prose-p:my-0 max-w-none p-5">
           <ReactMarkdown
 
           remarkPlugins={[remarkGfm]}>

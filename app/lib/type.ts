@@ -17,7 +17,6 @@ export interface Project {
 
 export interface ProjectMeta {
   id: string;
-  number: string;
 
   title: string;
   subtitle: string;
