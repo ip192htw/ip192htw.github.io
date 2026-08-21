@@ -3,8 +3,6 @@ import { ProjectMeta } from "../type";
 export const SCHOOL_ANN_OFF_WEB_CASE_STUDY: ProjectMeta = {
   id: "school-ann-off-web",
 
-  number: "2",
-
   title: "School Announcement & Offline Web",
   subtitle: "Campus Event Management Platform",
   stack: ["React", "Firebase", "Vercel"],
