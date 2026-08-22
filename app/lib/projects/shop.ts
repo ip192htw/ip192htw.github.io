@@ -8,7 +8,7 @@ export const SHOP_PROJECT: ProjectMeta = {
   status: "Archived",
   heroImages: [
     {
-      src: "/shop.png",
+      src: "/shop.webp",
       alt: "Shop E-commerce Platform Interface"
     }
   ],
