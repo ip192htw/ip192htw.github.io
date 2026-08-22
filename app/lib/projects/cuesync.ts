@@ -6,13 +6,16 @@ export const CUESYNC_CASE_STUDY: ProjectMeta = {
   title: "CueSync",
   subtitle: "Campus Event Management Platform",
   stack: ["React", "Firebase", "Vercel"],
-  status: "Unavailable",
+  status: "Partly Available",
   heroImages: [
     {
       src: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=1200&q=80",
       alt: "CueSync Event Management Dashboard Interface"
     }
   ],
+  links:{
+    github: "https://github.com/ip192htw/ticketsystem-front"
+  },
   content: `
 ## 專案資料
 
@@ -22,7 +25,7 @@ export const CUESYNC_CASE_STUDY: ProjectMeta = {
 
 類型：學習專案
 
-狀態：原始程式不可考(unavailable)，已停止維護
+狀態：原始程式部分可考，已停止維護
 
 架構：React + Firebase
 

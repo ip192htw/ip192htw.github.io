@@ -20,8 +20,8 @@ const dmSans = DM_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Kevin Chang - Full-Stack Engineer & Product Builder",
-  description: "Editorial-technical portfolio for Kevin Chang featuring full-stack applications, system architecture, and product engineering case studies.",
+  title: "ip192htw - Full-Stack Engineer & Product Builder",
+  description: "Editorial-technical portfolio for ip192htw featuring full-stack applications, system architecture, and product engineering case studies.",
 };
 
 export default function RootLayout({

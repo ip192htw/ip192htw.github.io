@@ -12,6 +12,9 @@ export const SHOP_PROJECT: ProjectMeta = {
       alt: "CueSync Event Management Dashboard Interface"
     }
   ],
+  links:{
+    github: "https://github.com/ip192htw/campus_event"
+  },
   content: `
 ## 專案資料
 

@@ -1,8 +1,10 @@
 import Link from "next/link";
+import Image from 'next/image';
 import { PROFILE_DATA, PROJECTS_DATA } from "./lib";
 import { FaLinkedin } from 'react-icons/fa';
 import { SiGithub } from 'react-icons/si';
 import { HiOutlineMail } from 'react-icons/hi';
+import Favicon from "./favicon.ico";
 
 export default function Home() {
   return (
@@ -49,21 +51,22 @@ export default function Home() {
             >
               <SiGithub />
             </a>
-            {/* <a 
-              href="https://www.linkedin.com/in/ryan-po-hsuan-chang-055a0a253/" 
+            <a 
+              href={PROFILE_DATA.contact.linkedin} 
               target="_blank" 
               rel="noopener noreferrer"
             >
               <FaLinkedin />
-            </a> */}
+            </a>
           </div>
         </div>
         <div className="shrink-0">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
+          <Image
             className="w-48 h-48 object-cover rounded-lg border border-outline-variant grayscale hover:grayscale-0 transition-all duration-500"
             alt={PROFILE_DATA.portraitAlt}
-            src={PROFILE_DATA.portraitSrc}
+            src={Favicon}
+            unoptimized
           />
         </div>
         
@@ -99,7 +102,7 @@ export default function Home() {
                 } py-8 flex flex-col md:flex-row gap-8 hover:bg-surface-container-low/30 transition-colors`}
               >
                 <div className="md:w-16 shrink-0 font-label-md text-label-md text-on-surface-variant pt-1">
-                  {project.number}
+                  {index + 1}
                 </div>
                 <div className="shrink-0 w-full md:w-90">
                   {/* eslint-disable-next-line @next/next/no-img-element */}

@@ -1,9 +1,10 @@
 import Link from "next/link";
-
+import Image from 'next/image';
 import { notFound } from "next/navigation";
 import { CUESYNC_CASE_STUDY, SHOP_PROJECT } from "../../lib";
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
+import { SiGithub } from 'react-icons/si';
 import { ProjectMeta } from "@/app/lib/type";
 
 export async function generateStaticParams() {
@@ -68,7 +69,7 @@ export default async function CueSyncPage({ params }: PageProps) {
       </header>
 
       {/* Metadata Grid */}
-      <section className="grid grid-cols-2 md:grid-cols-4 gap-y-6 gap-x-4 border-t border-b border-outline-variant py-6">
+      <section className="grid grid-cols-2 md:grid-cols-4 gap-y-6 gap-x-4 border-t   border-outline-variant py-6">
         <div className="flex flex-col gap-1">
           <span className="font-label-md text-label-md text-on-surface-variant uppercase tracking-widest">
             Stack
@@ -93,20 +94,54 @@ export default async function CueSyncPage({ params }: PageProps) {
             {caseStudy.status}
           </span>
         </div>
+        <div className="flex flex-col gap-1">
+          <span className="font-label-md text-label-md text-on-surface-variant uppercase tracking-widest">
+            Links
+          </span>
+          <div className="flex items-center gap-4 mt-1">
+            {caseStudy.links?.demo && 
+              <a
+                className="inline-flex items-center justify-center gap-2 px-4 py-2 bg-primary-container text-on-primary rounded-lg font-label-md text-label-md uppercase tracking-widest hover:opacity-90 transition-opacity"
+                href={caseStudy.links?.demo}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Live Demo
+                <span className="material-symbols-outlined text-[16px]">
+                  open_in_new
+                </span>
+              </a>
+            }
+            {caseStudy.links?.github && 
+              <a
+                className="inline-flex items-center justify-center gap-2 px-4 py-3 bg-transparent border border-outline-variant text-on-surface rounded-lg font-label-md text-label-md uppercase tracking-widest hover:bg-surface-container-high transition-colors"
+                href={caseStudy.links?.github}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <SiGithub size={16} />
+                GitHub Repository
+              </a>
+            }
+          </div>
+        </div>
       </section>
 
+    
       {/* Hero Image */}
-      <figure className="w-full aspect-video rounded-xl overflow-x-scroll scrollbar-width:none [&::-webkit-scrollbar]:hidden bg-surface-container-low border border-outline-variant">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
+      <figure className="relative w-full aspect-video rounded-xl overflow-x-scroll scrollbar-width:none [&::-webkit-scrollbar]:hidden bg-surface-container-low border border-outline-variant">
         {caseStudy.heroImages.map((heroImage) => (
-          <img
+          <Image
             key={heroImage.src}
-            alt={heroImage.alt}
-            className="w-full h-full object-cover"
             src={heroImage.src}
+            alt={heroImage.alt}
+            fill
+            unoptimized
+            className="w-full h-full object-cover"
           />
         ))}
       </figure>
+
 
       {/* Case Study Sections */}
       <article className="flex flex-col gap-10 max-w-180">
@@ -118,34 +153,6 @@ export default async function CueSyncPage({ params }: PageProps) {
           </ReactMarkdown>
         </div>
       </article>
-
-      {/* Project Links */}
-      <section className="flex flex-col sm:flex-row gap-4 pt-6 border-t border-outline-variant">
-        {caseStudy.links?.demo && 
-          <a
-            className="inline-flex items-center justify-center gap-2 px-4 py-2 bg-primary-container text-on-primary rounded-lg font-label-md text-label-md uppercase tracking-widest hover:opacity-90 transition-opacity"
-            href={caseStudy.links?.demo}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Live Demo
-            <span className="material-symbols-outlined text-[16px]">
-              open_in_new
-            </span>
-          </a>
-        }
-        {caseStudy.links?.github && 
-          <a
-            className="inline-flex items-center justify-center gap-2 px-4 py-2 bg-transparent border border-outline-variant text-on-surface rounded-lg font-label-md text-label-md uppercase tracking-widest hover:bg-surface-container-high transition-colors"
-            href={caseStudy.links?.github}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            GitHub Repository
-            <span className="material-symbols-outlined text-[16px]">code</span>
-          </a>
-        }
-      </section>
     </main>
   );
 }

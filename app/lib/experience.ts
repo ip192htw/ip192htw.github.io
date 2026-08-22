@@ -2,16 +2,7 @@ import { ExperienceItem, EducationItem } from "./type";
 
 export const EXPERIENCE_DATA: ExperienceItem[] = [
   {
-    period: "2026 - Present",
-    role: "Product Engineer",
-    company: "Project",
-    bullets: [
-      "Led development of core infrastructure, improving API response times by 40%.",
-      "Designed and implemented a scalable microservices architecture using Go and gRPC.",
-    ],
-  },
-  {
-    period: "2024 - 2025",
+    period: "2023 - Present",
     role: "Student Developer",
     company: "Open Source",
     bullets: [
@@ -21,15 +12,15 @@ export const EXPERIENCE_DATA: ExperienceItem[] = [
 ];
 
 export const SKILLS_DATA = {
-  languages: ["TypeScript", "Go", "Python", "Rust"],
-  frameworks: ["React", "Next.js", "Tailwind CSS", "Express"],
-  tools: ["Docker", "Git", "AWS", "Vercel"],
+  languages: ["TypeScript","Python", "Swift", "JavaScript", "HTML", "CSS"],
+  frameworks: ["React", "Next.js", "Tailwind CSS"],
+  tools: ["Docker", "Git", "Vercel", "Firebase", "GCP"],
 };
 
 export const EDUCATION_DATA: EducationItem[] = [
   {
-    period: "2020 - 2024",
-    degree: "B.S. Computer Science",
-    institution: "University of Technology",
+    period: "2025 - Present",
+    degree: "-",
+    institution: "Affiliated Senior High School of National Taiwan Normal University",
   },
 ];

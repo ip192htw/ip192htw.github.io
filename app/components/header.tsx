@@ -10,8 +10,8 @@ export default function Header() {
 
   const navItems = [
     { label: "Home", href: "/" },
-    { label: "CueSync Case Study", href: "/projects/cuesync" },
-    { label: "Resume", href: "/resume" },
+    // { label: "CueSync Case Study", href: "/projects/cuesync" },
+    // { label: "Resume", href: "/resume" },
   ];
 
   return (
@@ -29,7 +29,7 @@ export default function Header() {
             terminal
           </span>
           <span className="font-headline-md text-xl md:text-2xl font-bold tracking-tight text-on-surface">
-            Kevin Chang
+            ip192htw
           </span>
         </Link>
 
