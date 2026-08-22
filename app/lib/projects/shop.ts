@@ -8,8 +8,8 @@ export const SHOP_PROJECT: ProjectMeta = {
   status: "Archived",
   heroImages: [
     {
-      src: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=1200&q=80",
-      alt: "CueSync Event Management Dashboard Interface"
+      src: "/shop.png",
+      alt: "Shop E-commerce Platform Interface"
     }
   ],
   links:{
